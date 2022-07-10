@@ -1,4 +1,4 @@
-﻿#NoEnv
+#NoEnv
 #SingleInstance, Force
 #InstallKeybdHook
 #InstallMouseHook
@@ -2108,7 +2108,9 @@ If !WinExist("ahk_id " hwnd_legion_window)
 	Gui, legion_window: Add, Text, xp yp Border BackgroundTrans Center vlegion_paste gLegion_seeds_parse, % " import from clipboard "
 	Gui, legion_window: Add, Text, % "xs BackgroundTrans Left vlegion_type w"(poe_height/4)*0.95, % "type:"
 	Gui, legion_window: Add, Text, % "xs BackgroundTrans Left vlegion_seed w"(poe_height/4)*0.95, % "seed:"
+
 	Gui, legion_window: Add, Text, % "xs BackgroundTrans Left vlegion_name w"(poe_height/4)*0.95, % "name:"
+	Gui, legion_window: Add, Button, % "x180 y70 BackgroundTrans Center gtrade_open w80 h25", % "Trade"
 	
 	Gui, legion_window: Font, underline
 	Gui, legion_window: Add, Text, % "ys Section BackgroundTrans Left w"(poe_height/4)*0.95, % "keystones:"
@@ -2130,12 +2132,15 @@ If !WinExist("ahk_id " hwnd_legion_window)
 	}
 }
 
+
 If (legion_type_parse = "")
 {
 	legion_type_parse := "lethal pride"
 	legion_seed_parse := 18000
 	legion_name_parse := "kaom"
 }
+
+
 
 GuiControl, legion_window: text, legion_type, % "type: " legion_type_parse
 GuiControl, legion_window: text, legion_seed, % "seed: " legion_seed_parse
@@ -5206,6 +5211,34 @@ If !ErrorLevel
 	ToolTip,,,, 11
 	stash_search_scroll_mode := 0
 }
+Return
+
+trade_open:
+	Gui, legion_treemap: Destroy
+	hwnd_legion_treemap := ""
+	Gui, legion_window: Destroy
+	hwnd_legion_treemap := ""
+	if (legion_type_parse = "Elegant Hubris") {
+		tradelink := "{%22query%22:{%22status%22:{%22option%22:%22online%22},%22stats%22:[{%22type%22:%22count%22,%22filters%22:[{%22id%22:%22explicit.pseudo_timeless_jewel_caspiro%22,%22value%22:{%22min%22:" . legion_seed_parse . ",%22max%22:" . legion_seed_parse . "},%22disabled%22:false},{%22id%22:%22explicit.pseudo_timeless_jewel_cadiro%22,%22value%22:{%22min%22:" . legion_seed_parse . ",%22max%22:" . legion_seed_parse . "},%22disabled%22:false},{%22id%22:%22explicit.pseudo_timeless_jewel_victario%22,%22value%22:{%22min%22:" . legion_seed_parse . ",%22max%22:" . legion_seed_parse . "},%22disabled%22:false}],%22value%22:{%22min%22:1}}]},%22sort%22:{%22price%22:%22asc%22}}"
+	}
+	if (legion_type_parse = "Brutal Restraint"){
+		tradelink := "{%22query%22:{%22status%22:{%22option%22:%22online%22},%22stats%22:[{%22type%22:%22count%22,%22filters%22:[{%22id%22:%22explicit.pseudo_timeless_jewel_asenath%22,%22value%22:{%22min%22:" . legion_seed_parse . ",%22max%22:" . legion_seed_parse . "},%22disabled%22:false},{%22id%22:%22explicit.pseudo_timeless_jewel_balbala%22,%22value%22:{%22min%22:" . legion_seed_parse . ",%22max%22:" . legion_seed_parse . "},%22disabled%22:false},{%22id%22:%22explicit.pseudo_timeless_jewel_nasima%22,%22value%22:{%22min%22:" . legion_seed_parse . ",%22max%22:" . legion_seed_parse . "},%22disabled%22:false}],%22value%22:{%22min%22:1}}]},%22sort%22:{%22price%22:%22asc%22}}"
+	}
+	if (legion_type_parse = "Lethal Pride"){
+		tradelink :="{%22query%22:{%22status%22:{%22option%22:%22online%22},%22stats%22:[{%22type%22:%22count%22,%22filters%22:[{%22id%22:%22explicit.pseudo_timeless_jewel_akoya%22,%22value%22:{%22min%22:" . legion_seed_parse . ",%22max%22:" . legion_seed_parse . "},%22disabled%22:false},{%22id%22:%22explicit.pseudo_timeless_jewel_kaom%22,%22value%22:{%22min%22:" . legion_seed_parse . ",%22max%22:" . legion_seed_parse . "},%22disabled%22:false},{%22id%22:%22explicit.pseudo_timeless_jewel_rakiata%22,%22value%22:{%22min%22:" . legion_seed_parse . ",%22max%22:" . legion_seed_parse . "},%22disabled%22:false}],%22value%22:{%22min%22:1}}]},%22sort%22:{%22price%22:%22asc%22}}"
+	}
+	if (legion_type_parse = "Militant Faith"){
+		tradelink :="{%22query%22:{%22status%22:{%22option%22:%22online%22},%22stats%22:[{%22type%22:%22count%22,%22filters%22:[{%22id%22:%22explicit.pseudo_timeless_jewel_avarius%22,%22value%22:{%22min%22:" . legion_seed_parse . ",%22max%22:" . legion_seed_parse . "},%22disabled%22:false},{%22id%22:%22explicit.pseudo_timeless_jewel_dominus%22,%22value%22:{%22min%22:" . legion_seed_parse . ",%22max%22:" . legion_seed_parse . "},%22disabled%22:false},{%22id%22:%22explicit.pseudo_timeless_jewel_maxarius%22,%22value%22:{%22min%22:" . legion_seed_parse . ",%22max%22:" . legion_seed_parse . "},%22disabled%22:false}],%22value%22:{%22min%22:1}}]},%22sort%22:{%22price%22:%22asc%22}}"
+	}
+	if (legion_type_parse = "Glorious Vanity"){
+		tradelink := "{%22query%22:{%22status%22:{%22option%22:%22online%22},%22stats%22:[{%22type%22:%22count%22,%22filters%22:[{%22id%22:%22explicit.pseudo_timeless_jewel_ahuana%22,%22value%22:{%22min%22:" . legion_seed_parse . ",%22max%22:" . legion_seed_parse . "},%22disabled%22:false},{%22id%22:%22explicit.pseudo_timeless_jewel_doryani%22,%22value%22:{%22min%22:" . legion_seed_parse . ",%22max%22:" . legion_seed_parse . "},%22disabled%22:false},{%22id%22:%22explicit.pseudo_timeless_jewel_xibaqua%22,%22value%22:{%22min%22:" . legion_seed_parse . ",%22max%22:" . legion_seed_parse . "},%22disabled%22:false}],%22value%22:{%22min%22:1}}]},%22sort%22:{%22price%22:%22asc%22}}"
+	}
+
+	
+	Run, https://www.pathofexile.com/trade/search/Sentinel?q=%tradelink%
+	
+
+
 Return
 
 Stash_search_save:
